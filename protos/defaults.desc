@@ -1,0 +1,20 @@
+
+û
+defaults.proto"è
+TestDefaults
+mybool (
+myboolArray (
+myuint32 (
+myuint32Array (
+mystring (	
+mystringArray (	*
+myobject (2.TestDefaults.TestObject/
+myobjectArray (2.TestDefaults.TestObjectƒ
+
+TestObject
+mybool (
+myboolArray (
+myuint32 (
+myuint32Array (
+mystring (	
+mystringArray (	

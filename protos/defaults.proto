@@ -1,0 +1,20 @@
+message TestDefaults {
+  optional bool mybool = 1;
+  repeated bool myboolArray = 2;
+  optional uint32 myuint32 = 3;
+  repeated uint32 myuint32Array = 4;
+  optional string mystring = 5;
+  repeated string mystringArray = 6;
+
+  message TestObject {
+    optional bool mybool = 1;
+    repeated bool myboolArray = 2;
+    optional uint32 myuint32 = 3;
+    repeated uint32 myuint32Array = 4;
+    optional string mystring = 5;
+    repeated string mystringArray = 6;
+  }
+
+  optional TestObject myobject = 7;
+  repeated TestObject myobjectArray = 8;
+}
