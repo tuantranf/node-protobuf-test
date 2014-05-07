@@ -45,37 +45,41 @@ router.get('/', function(req, res) {
 
 // Response serialized binary data
 router.post('/serialize', function(req, res) {
-	var result = serialize(req.body);
-	res.send(result);
+    var result = serialize(req.body);
+    // send response
+    res.type('application/octet-stream');
+    res.send(200, new Buffer(result, 'binary'));
 });
 
 router.post('/deserialize', function(req, res) {
 	getRawBody(req, {
-    	length: req.header('content-length'),
-    	limit: '500kb',
-    	encoding: 'binary'
+        length: req.header('content-length'),
+        limit: '500kb',
+        encoding: 'binary'
 	}, function(err, body) {
-	    if (err) {
-	      return res.send(err);
-	    }
-	    body = body.toString('binary');
-		var result = deserialize(body);
-		res.send(result);
+        if (err) {
+            return res.send(err);
+        }
+        body = new Buffer(body, 'binary');
+        var result = deserialize(body);
+        res.send(result);
 	});
 });
 
 router.post('/flow', function(req, res) {
 	getRawBody(req, {
-    	length: req.header('content-length'),
-    	limit: '500kb',
-    	encoding: 'binary'
+        length: req.header('content-length'),
+        limit: '500kb',
+        encoding: 'binary'
 	}, function(err, body) {
-	    if (err) {
-	      return res.send(err);
-	    }
-	    body = body.toString('binary');
-		var result = serialize(deserialize(body));
-		res.send(result);
+        if (err) {
+            return res.send(err);
+        }
+        body = new Buffer(body, 'binary');
+        var result = serialize(deserialize(body));
+        // send response
+        res.type('application/octet-stream');
+        res.send(200, new Buffer(result, 'binary'));
 	});
 });
 
